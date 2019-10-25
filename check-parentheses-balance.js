@@ -6,6 +6,8 @@ function checkParenthesesBalance(str) {
 
   for (let i = 0; i < arr.length; i++) {
     const char = arr[i];
+    // Array.prototype.includes не подходит, потому что
+    // нужно сравнивать индексы в конце
     const oIdx = opening.findIndex(par => par === char);
     const cIdx = closing.findIndex(par => par === char);
 
