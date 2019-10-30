@@ -499,3 +499,59 @@ console.log(getSpiral(3));
 console.log(getSpiral(4));
 console.log(getSpiral(5));
 ```
+
+# 13. Выдать купюры в банкомате
+
+https://jsbin.com/likeniwabi/1/edit?js,output
+
+```js
+// 1. Реализовать функцию getMoney для банкомата, выдающего купюры.
+// На вход - сумма, на выходе объект с количеством купюр по каждому номиналу. 
+// При этом банкомат должен выдать минимальное количество банкнот.
+// Доступные номиналы: 50, 100, 500, 1000, 5000 р
+
+// Пример: getMoney(6200) // return {5000: 1, 1000: 1, 500: 0, 100: 2, 50: 0}
+
+// 2. На вход добавляется объект с текущим количеством купюр в банкомате
+
+// Пример: getMoney(6200, {5000:0, 1000:7, 100:5}) // return {5000: 0, 1000: 6, 100: 2}
+// P.S. не забыть модифицировать объект с номиналами.
+
+function getMoney(amount, limits) {
+  limits = limits || {
+    5000: Infinity,
+    1000: Infinity,
+    500: Infinity,
+    100: Infinity,
+    50: Infinity
+  };
+  
+  let residual = amount;
+  
+  let res = Object.keys(limits)
+    .sort((a, b) => -(+a - +b))
+    .reduce((acc, m) => {
+      m = +m;
+      const limit = limits[m];
+      const mAmount = Math.floor(residual / m);
+      const maxMAmount = limit > mAmount ? mAmount : limit;
+      residual -= m * maxMAmount;
+      acc[m] = maxMAmount;
+      return acc;
+    }, {});
+    
+  if (residual > 0) {
+  	throw new Error();
+  }
+  
+  return res;
+}
+
+// Верни корректный результат при запросе 300 р‣
+// Верни корректный результат при запросе 6 200 р‣
+// Верни ошибку если банкомат не сможет выдать требуемую сумму (349 р)
+
+// Верни корректный результат при запросе 39 500 р‣
+// Верни ошибку если банкомат не сможет выдать требуемую сумму
+
+```
