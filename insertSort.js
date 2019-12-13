@@ -1,4 +1,4 @@
-function insertSort(arr) {
+function insertionSort(arr) {
   if (arr.length === 0 || arr.length === 1) return arr;
 
   for (let i = 1; i < arr.length; i++) {

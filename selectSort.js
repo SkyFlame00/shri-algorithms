@@ -1,4 +1,4 @@
-function selectSort(arr) {
+function selectionSort(arr) {
   for (let i = arr.length; i > 0; i--) {
     let max = 0;
 
@@ -14,6 +14,6 @@ function selectSort(arr) {
   return arr;
 }
 
-console.log(selectSort([2,7,1,5,3]))
-console.log(selectSort([3,1,2,2,5,-1]))
-console.log(selectSort([10,8,7,-6,1]))
+console.log(selectionSort([2,7,1,5,3]))
+console.log(selectionSort([3,1,2,2,5,-1]))
+console.log(selectionSort([10,8,7,-6,1]))
